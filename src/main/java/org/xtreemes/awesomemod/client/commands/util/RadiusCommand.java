@@ -17,22 +17,23 @@ public class RadiusCommand implements ClientCommand {
 
     public static float radius = 0f;
     private static DustParticleEffect particle;
+    private static double locX;
+    private static double locY;
+    private static double locZ;
+
     @Override
     public void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
         ClientPlayerEntity player = getPlayer();
         particle = new DustParticleEffect(new Vector3f(211f/255f, 1, 148f/255f), 1f);
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if(radius > 0) {
-                double playerX = player.getX();
-                double playerY = player.getY();
-                double playerZ = player.getZ();
                 ClientWorld world = player.clientWorld;
                 int density = (int) (90 / radius);
                 for (int theta = 0; theta < 360; theta += density) {
                     for (int phi = 0; phi < 180; phi += density) {
-                        double x = playerX + radius * Math.sin(Math.toRadians(phi)) * Math.cos(Math.toRadians(theta));
-                        double y = playerY + radius * Math.sin(Math.toRadians(phi)) * Math.sin(Math.toRadians(theta));
-                        double z = playerZ + radius * Math.cos(Math.toRadians(phi));
+                        double x = locX + radius * Math.sin(Math.toRadians(phi)) * Math.cos(Math.toRadians(theta));
+                        double y = locY + radius * Math.sin(Math.toRadians(phi)) * Math.sin(Math.toRadians(theta));
+                        double z = locZ + radius * Math.cos(Math.toRadians(phi));
 
                         world.addParticle(particle, x, y, z, 0, 0, 0);
                     }
@@ -49,6 +50,9 @@ public class RadiusCommand implements ClientCommand {
                                 player.playSound(SoundEvents.ENTITY_SHULKER_HURT_CLOSED,1.0f,1.8f);
                                 return 1;
                             }
+                            locX = player.getX();
+                            locY = player.getY();
+                            locZ = player.getZ();
                             radius = size;
                             SendFeedback.sendMessage("Set radius to " + size, player);
                             particle = new DustParticleEffect(new Vector3f(211f/255f, 1, 148f/255f), radius/5);

@@ -22,5 +22,8 @@
     "fabric": "*",
     "minecraft": "${minecraft_version}",
     "fabric-key-binding-api-v1": "*"
-  }
+  },
+  "mixins": [
+    "awesomemod.mixin.json"
+  ]
 }

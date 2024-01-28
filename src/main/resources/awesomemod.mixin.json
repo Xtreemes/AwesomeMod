@@ -1,0 +1,6 @@
+{
+  "package": "org.xtreemes.awesomemod.client.mixin",
+  "client": [
+    "OpenChatMixin"
+  ]
+}
