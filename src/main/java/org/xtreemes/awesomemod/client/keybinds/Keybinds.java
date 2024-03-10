@@ -12,6 +12,7 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import org.lwjgl.glfw.GLFW;
 
+
 public class Keybinds implements ClientModInitializer {
     public static boolean PREFIX_ACTIVE = false;
 

@@ -5,16 +5,12 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallba
 import org.xtreemes.awesomemod.client.commands.RegisterCommands;
 
 
+
 public class AwesomeModClient implements ClientModInitializer {
-    /**
-     * Runs the mod initializer on the client environment.
-     */
 
     @Override
     public void onInitializeClient() {
-        ClientCommandRegistrationCallback.EVENT.register(((dispatcher, registryAccess) -> {
-            RegisterCommands.registerCommands(dispatcher);
-        }));
+        ClientCommandRegistrationCallback.EVENT.register(((dispatcher, registryAccess) -> RegisterCommands.registerCommands(dispatcher)));
 
     }
 }

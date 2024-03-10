@@ -1,6 +1,7 @@
 {
   "package": "org.xtreemes.awesomemod.client.mixin",
   "client": [
+    "HandledScreenMixin",
     "OpenChatMixin"
   ]
 }
